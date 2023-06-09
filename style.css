@@ -1,0 +1,158 @@
+*, 
+*::before, 
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+:root {
+    --main-bg-cl:  hsl(0, 0%, 3%);
+    --main-cl: #EBEBEB;
+    --ship-red: red;
+    --bullet-cl: rgb(217, 230, 41);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+html, body {
+    height: 100%;
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+    font-family: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+    color: var(--main-cl);
+    background-color: var(--main-bg-cl);
+    min-height: 100%;  
+    overflow: hidden;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.ship {
+    width: 40px;
+    height: 70px;
+    background-color: var(--main-cl);
+    position: relative;
+    top: 50%;
+    left: 50%;
+    border-radius: 15px 15px 0 0;
+    transition: all .1s linear;
+}
+
+.headship {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--ship-red);
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+    height: 20px;
+}
+
+.ship::before,
+.ship::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 15px;
+    height: 25px;
+    background-color: var(--ship-red);
+    z-index: -1;
+    border-radius: 83% 17% 0% 100% / 100% 0% 100% 0%;
+}
+
+.ship::before {
+    left: 0;
+    transform: translateX(-95%);
+}
+
+.ship::after {
+    right: 0;
+    transform: translateX(95%) scaleX(-1);
+}
+
+.boost {
+    display: none;
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translate(-75%,100%) rotateZ(180deg);
+    width: 40px;
+    height: 40px;
+}
+
+.boost.animate {
+    display: block;
+}
+
+.boost.animate::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 100%;
+    border-radius: 50% / 100% 100% 0 0;
+    border: 3px solid rgba(255, 153, 0, 0.932);
+    outline: 3px solid rgba(255, 0, 0, 0.932);
+    animation: boost 1s linear infinite;
+}
+
+.boost.animate::before {
+    left: 0;
+    background-color: var(--bullet-cl);
+    animation-delay: -0.5s;
+}
+
+
+@keyframes boost {
+    from { transform: translateY(0) scaleY(1); }
+    to { transform: translateY(10px) scaleY(0.5); }
+}
+
+.bullet {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: var(--bullet-cl);
+    border-radius: 50%;
+}
+
+.asteroid {
+    background-color: var(--main-cl);
+    position: absolute;
+    top: 30%;
+    left: 20%;
+    clip-path: polygon(34% 0%, 99% 20%, 100% 75%, 48% 98%, 13% 76%, 2% 30%);
+}
