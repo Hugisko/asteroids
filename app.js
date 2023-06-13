@@ -2,7 +2,7 @@ const ship = document.querySelector('.ship');
 const boost = document.querySelector('.boost');
 
 const maxShipSpeed = 10;
-let shipSpeed = 0.2;
+let shipSpeed = 0.4;
 let rotationSpeed = 5;
 let angle = 0;
 let targetAngle = angle;
